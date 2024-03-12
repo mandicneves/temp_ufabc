@@ -6,3 +6,7 @@ Repositório para scripts da monitoria do curso de Tópiocs Especiais em Metodol
 - 05/03 - Lista 01
 
 https://youtu.be/iuf3plkGSUc
+
+- 12/03 - Lista 02
+
+https://youtu.be/QgTsEIM9Yoo
