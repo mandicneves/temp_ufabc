@@ -1,0 +1,19 @@
+Lista de Exercícios #02
+
+Exercises
+
+1. Install and load the package UsingR and load the father.son data with data(father.son) .Get the linear regression fit where the son’s height is the outcome and the father’s height is the predictor. Give the intercept and the slope, plot the data, and overlay the fitted regression line. 
+
+2. Refer to problem 1. Center the father and son variables and refit the model omitting the intercept. Verify that the slope estimate is the same as the linear regression fit from problem 1.
+
+3. Refer to problem 1. Normalize the father and son data and see that the fitted slope is the correlation.
+
+4. Go back to the linear regression line from Problem 1. If a father’s height was 63 inches, what would you predict the son’s height to be?
+
+5. Consider a data set where the standard deviation of the outcome variable is double that of the predictor. Also, the variables have a correlation of 0.3. If you fit a linear regression model, what would be the estimate of the slope?
+
+6. Consider the previous problem. The outcome variable has a mean of 1 and the predictor has a mean of 0.5. What would be the intercept?
+
+7. True or false, if the predictor variable has mean = 0, the estimated intercept from linear regression will be the mean of the outcome?
+
+8. Consider problem 5 again. What would be the estimated slope if the predictor and outcome were reversed?
