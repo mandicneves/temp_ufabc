@@ -10,3 +10,7 @@ https://youtu.be/iuf3plkGSUc
 - 12/03 - Lista 02
 
 https://youtu.be/QgTsEIM9Yoo
+
+- 26/03 - Lista 03
+
+https://youtu.be/KFfJfeulu5o
