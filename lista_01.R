@@ -1,86 +1,53 @@
 # Ex1 ####
 
-# Cria os vetores (i.e. as variaveis) com seus valores
+prov <- c("Mittelfranken", "Niderbayern", "Oberfranken", "Oberpfalz", "Schunben", "Unterfranken", "Média")
+mort <- c(250, 320, 170, 300, 270, 190, 250)
+amem <- c(60, 30, 90, 60, 40, 80, 60)
 
-prov <- c("Mittelfranken", "Niderbayern", "Oberfranken", 
-          "Oberpfalz", "Schunben", "Unterfranken")
-mort <- c(250, 320, 170, 300, 270, 190)
+dados <- data.frame(prov, mort, amem)
+dados <- read.table("./tx_mort", header = TRUE)
 
-amat <- c(60, 30, 90, 60, 40, 90)
+# ex1.a) ####
 
-# Cria um banco de dados com os vetores acima
-bd <- data.frame(prov, mort, amat)
-# carrega um banco de dados chamado `dados`localizado na pasta raiz da sessao do R
-dados <- read.table("dados", header = TRUE)
-# Abre a documentacao
-?read.table
-
-# Ex1.a ####
-
-# carregar pacote
+# biblioteca para grafico
 library(ggplot2)
-# criando grafico
-g1 <- ggplot(data = dados,
-             mapping = aes(x = Amamentação, y = Mortalidade)) + 
+p <- ggplot(data = dados,
+            mapping = aes(x = Mortalidade, Amamentação)) + 
   geom_point()
-# plota o grafico
-g1
-plot(g1)
 
-# estatisticas descritivas
+# ex1.b) ####
+
+# algumas estatisticas
 summary(dados)
+# covariancia
+cov(dados$Mortalidade, dados$Amamentação)
+# correlacao
+cor(dados$Mortalidade, dados$Amamentação)
+# regressao linear simples
+regressao <- lm(Mortalidade ~ Amamentação, data = dados)
+summary(regressao)
+# biblioteca para impressao dos resultados da regressao
+#install.packages("stargazer")
+library(stargazer)
+stargazer(regressao, type = "text")
+# grafico com linha de regressao
+p + geom_smooth(method = "lm", se = FALSE)
+# calculando previsao para outras provincias
+pais <- data.frame(Província = c("Oberbayern", "Pfalz"), Amamentação = c(37, 85))
+predict(regressao, pais)
 
-# Ex1.b ####
+# ex1.c) ####
 
-# criando modelo de regressao linear (lm)
-reg <- lm(formula = Mortalidade ~ Amamentação, data = dados)
-# abre documentacao da funcao lm
-?lm
-# abre o sumario da regressao
-summary(reg)
+stargazer(regressao, type = "text")
 
-# ajustando linha da regressao
-g2 <- g1 + geom_smooth(method = "lm")
-g2
-# abre a documentacao da funcao
-?geom_smooth
-# novos dados
-pais <- data.frame(Província = c("Oberbayern", "Pfalz"),
-                   Amamentação = c(37, 85))
-# previsao para os novos dados
-predict(reg, pais)
+# EX.2 ####
 
-# Ex1.c ####
+dados <- as.data.frame(t(read.table("./batimento")))
+names(dados) <- c("Idade", "Batimento")
 
-# Ex2
+regressao <- lm(Batimento ~ Idade, data = dados)
+summary(regressao)
+stargazer(regressao, type = "text")
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+novos_dados <- data.frame(Idade = c(10, 76, 234, 5, 12, 34))
+predict(regressao, novos_dados)
