@@ -1,74 +1,71 @@
-# LISTA_02 ####
+# Ex_01 ####
 
-# Exercicio_01 ####
-
-# instala o pacote
-install.packages("UsingR")
-# carrega o pacote, as duas funcoes fazem a mesma coisa
-require(UsingR)
+# instalando pacote
+# install.packages("UsingR")
+# carregando pacote na sessao
 library(UsingR)
-# carrega a base de dados
+library(stargazer)
+# carregando base de dados
 data("father.son")
 
-# cria regresao
+# criando modelo de regressao linear
 reg <- lm(sheight ~ fheight, data = father.son)
-# infos da regressao
+# infos sobre a regressao
 summary(reg)
 
-# cria um grafico
+# criando grafico
 library(ggplot2)
-g <- ggplot(data = father.son,
-       mapping = aes(x = fheight, y = sheight))
-# adiciona camadas ao grafico
-g + geom_point() + 
-  geom_smooth(method = "lm")
+p <- ggplot(data = father.son,
+              mapping = aes(x = fheight, y = sheight))
+p + geom_point() + 
+  geom_smooth(method = "lm", se = FALSE, col = "red")
 
-# Exercicio_02 ####
+# fazendo na mao
+x <- father.son$fheight
+y <- father.son$sheight
+b1 <- cor(x, y) * sd(y) / sd(x)
+b0 <- mean(y) - (b1 * mean(x))
+rbind(coef(reg), c(b0, b1))
 
-# centra os valores dos filhos a media e adiciona a coluna sc
-father.son$sc <- father.son$sheight - mean(father.son$sheight)
-# centra os valores dos pais a media e adiciona a coluna sc
-father.son$fc <- father.son$fheight - mean(father.son$fheight)
+# Ex_02 ####
 
-# cria modelo de regressao
-regc <- lm(sc ~ fc, data = father.son)
+xc <- x - mean(x)
+yc <- y - mean(y)
+regc <- lm(yc ~ xc + 0 )
 
-# instala pacote de apresentacao de resultados de regressao
-install.packages("stargazer")
-# carrega o pacote
-library(stargazer)
-# resultados da regressao no formato de tabela
 stargazer(reg, regc, type = "text")
 
-# Exercicio_03 ####
+# Ex_03 ####
+
+xn <- xc / sd(x)
+yn <- yc / sd(y)
+regn <- lm(yn ~ xn + 0)
+
+plot(density(xn))
 
 
-# Normalizar os valores: xi - xbarra / dp(x)
-# criar uma coluna com os valores normalizados dos filhos
-father.son$sn <- father.son$sc / sd(father.son$sheight)
-# criar uma coluna com os valores normalizados dos pais
-father.son$fn <- father.son$fc / sd(father.son$fheight)
+stargazer(reg, regn, type = "text")
 
-# regressao normalizada
-regn <- lm(sn ~ fn, data = father.son)
+# Ex_04 ####
 
-# Exercicio_04 ####
-# para predizer um valor, ele precisa estar no formato de data.frame
-# por isso o codigo data.frame(fheight = c(63))
 predict(reg, data.frame(fheight = c(63)))
 
+# Ex_05 ####
 
+# sd(y) = 2 sd(x) =>
+# sd(y) / sd(x) = 2
+0.3 * 2
 
+# Ex_06 ####
 
+1 - (0.6 * 0.5)
 
+# Ex_07 ####
 
+# Verdade
 
+# Ex_08 ####
 
-
-
-
-
-
-
-
-
+# sd(y) 2 =  sd(x) =>
+# sd(y) / sd(x) = 1/2
+0.3 * 0.5
