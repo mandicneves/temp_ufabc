@@ -17,4 +17,4 @@ https://youtu.be/KFfJfeulu5o
 
 - 09/04 - Lista 04
 
-https://www.youtube.com/watch?v=51y0XuoCUec
+https://youtu.be/51y0XuoCUec
