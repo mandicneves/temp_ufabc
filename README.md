@@ -18,3 +18,7 @@ https://youtu.be/KFfJfeulu5o
 - 09/04 - Lista 04
 
 https://youtu.be/51y0XuoCUec
+
+- 16/04 - Lista 05
+
+https://youtu.be/aXbML-5ZvCA
