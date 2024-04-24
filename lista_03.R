@@ -153,6 +153,8 @@ co2 <- co2 %>%
   mutate(date = paste(year, month, "1", sep = "-"),
          date = as.Date(date))
 
+Sys.setlocale("LC_TIME", locale = "en_us.UTF-8")
+
 date_nasa <- giss_nasa %>% 
   select(1:13) %>% 
   clean_names() %>%
